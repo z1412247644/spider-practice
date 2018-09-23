@@ -1,6 +1,9 @@
+'''
+redis数据库相关操作库
+'''
+
 import redis
 from random import choice
-
 
 MAX_SCORE = 100
 MIN_SCORE = 0
