@@ -1,3 +1,4 @@
+
 MAX_FAILED_TIME = 3
 OK_CODE = [200, 304]
 
@@ -9,7 +10,7 @@ from pyquery import PyQuery as pq
 from db_mysql import MySQL
 
 class Spider():
-    base_url = 'http://weixin.sougou.com/weixin'
+    base_url = 'http://weixin.sogou.com/weixin'
     keyword = '杭电'
     mysql = MySQL()
     headsers = {
