@@ -1,22 +1,32 @@
-import json
+import time
 import requests
-from lxml import etree
+
 
 headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36'
 }
-def get_html(url):  #简单获取网页源码
-    req = requests.get(url, headers=headers)
-    return req.text
 
+proxy_url = 'http://47.101.136.128:8888/random'
+aim_url = 'http://47.101.136.128/'
 
-def Proxy_get_xici():
-    url = 'http://www.xicidaili.com/nn'
-    print('get proxy from ', url)
-    doc = etree.HTML(get_html(url))
-    ip = doc.xpath('//tr//td[2]/text()')
-    port = doc.xpath('//tr//td[3]/text()')
-    for index in range(len(ip)):
-        print(':'.join([ip[index], port[index]]))
-
-Proxy_get_xici()
+def get_proxy():
+    try:
+        res = requests.get(proxy_url)
+        if res.status_code == 200:
+            return res.text
+    except:
+        return None
+def main():
+    proxy = get_proxy()
+    proxies = {
+        'http': 'http://' + proxy,
+        'https': 'https://' + proxy
+    }
+    try:
+        res =  requests.get(aim_url, proxies=proxies, timeout = 3)
+        print(res.status_code)
+    except Exception as e:
+        print(e)
+while(True):
+    main()
+    time.sleep(1)
