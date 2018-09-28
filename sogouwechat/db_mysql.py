@@ -21,6 +21,7 @@ class MySQL():
         try:
             self.cursor.execute(sql_query, tuple(data.values()))
             self.db.commit()
+            print('add to mysql')
         except pymysql.MySQLError as e:
             print(e.args)
             self.db.rollback()
