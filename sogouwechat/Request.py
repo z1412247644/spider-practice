@@ -10,12 +10,13 @@ from pickle import dumps, loads
 from redis import StrictRedis
 
 class wechatRequest(Request):
-    def __init__(self, url, callback, method='GET', headers=None, need_proxy=False, fail_time=0, timeout=TIMEOUT):
+    def __init__(self, url, callback, method='GET', headers=None, need_proxy=False, fail_time=0, timeout=TIMEOUT, req_func=0):
         Request.__init__(self, method, url,headers)
         self.callback = callback
         self.need_proxy = need_proxy
         self.fail_time = fail_time
         self.timeout = timeout
+        self.req_func = req_func
 
 class RedisQueue():
     def __init__(self):
